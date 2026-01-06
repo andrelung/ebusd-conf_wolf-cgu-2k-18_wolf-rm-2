@@ -24,3 +24,6 @@ I habe several command types:
 
 # Please be careful
 I am no expert and these files are not validated in any kind of way.
+
+# No changes have been made to:
+- mqtt-hassio.cfg
