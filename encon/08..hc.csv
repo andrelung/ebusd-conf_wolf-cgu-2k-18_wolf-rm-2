@@ -1,4 +1,6 @@
 type,circuit,level,name,comment,qq,zz,pbsb,id,*name,part,type,divisor/values,unit,comment
+
+# offen - ggf irrelevant für mein System:
 *w,
 *r,
 #w,,,Operation,Betriebsdaten des Reglers an den Feuerungsautomaten,,03,0507,,status,,UCH,0=off;1=none;85=hwc;170=heat;204=emissioncheck;221=techcheck;238=stop;102=hwc_stop;187=hwc_heat;68=hwc_stepped,,status heat request,action,,UCH,0=none;1=pumpoff;2=pumpon;3=consumeoff;4=consumeon,,variable consumers,desiredtemp,,D2C,,°C,boiler target temperature,desiredpress,,D2B,,bar,boiler target pressure,settingdegree,,D1C,,%,"setting degree, steps instead of percent when action is 0x44=hwc_stepped",hwcdesiredtemp,,D1C,,°C,hot water target temperature,fuel,,UCH,0=dontcare;1=gas;2=oil;3=dontcare1,,fuel choice
@@ -37,18 +39,27 @@ r,,,Hg90,HG 90 - Brennerbetriebsstunden,,,5022,002a02,value,,UIN,,hours,hours
 r,,,Hg91,HG 91 - Brennerstarts,,,5022,002602,value,,UIN,,,
 r,,,Pump,PWM Pumpe,,,5022,006d01,value,,UIN,,%,percent
 
+
+# working: (BM-2 Ausgabewerte A01-A03) https://ai.withgrips.com/c/578b57a2-21d8-4881-9f27-7e47485f1b99
 r,,,Flowtempdesired,Vorlauf Sollwert,,,5022,000200,value,,UIN,10,°C,temperature
 r,,,Flowtemp,Vorlauf Istwert,,,5022,000d00,value,,UIN,10,°C,temperature
 r,,,Hwctempdesired,Warmwasser Solltemperatur,,,5022,000300,value,,UIN,10,°C,temperature
-# (obere 3) funktionierend: (A01-A03) https://ai.withgrips.com/c/578b57a2-21d8-4881-9f27-7e47485f1b99
 
+r,,,tagzieltemp,Tag Zieltemperatur (35->50),,35,5022,fb7d27,,,UIN,10,°C,temperature
+# => 23
 
-#Testing:
-# might break other wwsoll http://192.168.174.20:8123/history?entity_id=sensor.ebusd_hc_hwctempdesired&start_date=2026-01-02T23%3A00%3A00.000Z
-#w,,,wwsoll,Warmwasser Solltemperatur,,35,5023,001300,value,,UIN,10,°C,temperature
+# Testing:
+r3,,,temp_burner,Kesseltemperatur (30->08),,08,5022,CC0D00,,,UIN,10,°C,temperature
+# => 35
+
+r,,,kesselsolltemperatur,Kesselsolltemperatur,,08,5022,CC0200,,,SIN,10,°C,temperature
+# => 40
 
 # breaks other roomtemp in bm2.csv => seems broken in bm2, enable this here
 r,,,raumtemp,Raumtemperatur,,35,5022,77b427,value,,UIN,10,°C,temperature
+
+# might break other wwsoll http://192.168.174.20:8123/history?entity_id=sensor.ebusd_hc_hwctempdesired&start_date=2026-01-02T23%3A00%3A00.000Z
+#w,,,wwsoll,Warmwasser Solltemperatur,,35,5023,001300,value,,UIN,10,°C,temperature
 
 
 # falsche Werte:
@@ -57,3 +68,13 @@ r,,,raumtemp,Raumtemperatur,,35,5022,77b427,value,,UIN,10,°C,temperature
 # 3,276.8:
 #r,,,Returntemp,Ruecklauf Ist-Temperatur,,,5022,001600,value,,UIN,10,°C,temperature
 #
+#r,cha,verdichterstarts,Verdichterstarts,,08,5022,CC2602;CC2702,verdichterstarts,,ULG,,,Verdichterstarts 
+#=> 128.357
+# r,cha,verdichter_max_starts_pro_stunde,(WP121) Verdichter max. Starts pro Stunde,,08,5022,CC582F,verdichter_max_starts_pro_stunde,,UIN,,,(WP121) Verdichter max. Starts pro Stunde
+# => 32.768
+# r,cha,warmwassertemperatur,Warmwassertemperatur,,08,5022,CC0E00,warmwassertemperatur,,SIN,10,°C,Warmwassertemperatur
+# => 255
+# r,cha,aussentemperatur,Außentemperatur,,08,5022,CC0C00,aussentemperatur,,SIN,10,°C,Außentemperatur
+# => -40
+# r,,no_of_power_on,Anzahl Netz-Ein (30->08),,08,5022,CC5E27,,,UIN,,,,,,,,,,,,
+# => 32.768

@@ -16,11 +16,16 @@ ebusd csv files for wolf cgu-2k-18 and wolf rm-2
 
 [main error] scan config f6: ERR: read timeout
 ```
+as far as I can identify this, 
+- 08 seems to be the Burner (CGU-2K-18)
+- 35 seems to be the Raumregler (RM-2)
+... and I think there are not other components in my system (like outdoor temperature or mixer)
 
-I habe several command types:
+ebusd interprets several command types as:
 - BC = Burner Circruit
-- MS = ?
-- MM = ?
+- MS = ? maybe: MS = Master (the bus master / master station, usually the main controller/boiler control that coordinates communication)
+- MM = ? maybe: MM = Mixer Module (German “Mischermodul”) 
+
 
 # my ebusd setup:
 - easi firmware Build: 20260104
@@ -35,3 +40,16 @@ I am no expert and these files are not validated in any kind of way.
 
 # No changes have been made to:
 - mqtt-hassio.cfg
+
+
+# What I do not understand (yet)
+Any help and explanations are appreciated :)
+- what is a master?
+````
+[bus notice] new master 30, master count 2
+[bus notice] new master 03, master count 3
+[bus notice] new master f1, master count 4
+```
+- and why do the numbers differ (08 + 35 are my adresses, i guess)
+- is maybe one of these masters the ebus adapter stick itself?
+    - probably not, since: [bus notice] bus started with own address 31/36
