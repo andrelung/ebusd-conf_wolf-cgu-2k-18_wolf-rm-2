@@ -1,9 +1,9 @@
 # ebusd-conf_wolf-cgu-2k-18_wolf-rm-2
 ebusd csv files for wolf cgu-2k-18 and wolf rm-2
+Currently work in progress, as I am exploring the csv format and the commands on my bus.
 
 My System identifies as:
-
-
+```
 [update notice] sent scan-read scan.08  QQ=31: ENCON;  ;-;-
 [bus notice] scan 08: ;ENCON;  ;-;-
 [main notice] read scan config file encon/08..hc.csv for ID "", SW65535, HW65535
@@ -13,7 +13,7 @@ My System identifies as:
 [main notice] read scan config file wolf/35..hc.csv for ID "8", SW0110, HW0000
 
 [main error] scan config f6: ERR: read timeout
-
+```
 
 I habe several command types:
 - BC = Burner Circruit
