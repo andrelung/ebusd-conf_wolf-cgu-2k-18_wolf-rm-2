@@ -1,0 +1,24 @@
+type,circuit,level,name,comment,qq,zz,pbsb,id,*name,part,type,divisor/values,unit,comment
+*r,
+*w,
+#r,,,RoomTemp,RaumtemperaturIst: room temperature,,,b509,0d0000,temp,,D2C,,°C,temperature,sensor,,UCH,0=ok;85=circuit;170=cutoff,,sensor status
+#r,,,RoomTempOffset,RaumtemperaturIstOffset,,,b509,0d1f00,value,,D2C,,°C,temperature
+#w,,install,RoomTempOffset,RaumtemperaturIstOffset,,,b509,0e1f00,value,,D2C,,°C,temperature
+#r,,,RoomTempOffsetSelfWarming,RaumTempOffsetEigenErwaerm,,,b509,0d2000,value,,D2C,,°C,temperature
+#r,,,HolidayPeriod,HolidayPeriod,,,b509,0d4300,hfrom,,HDA:3,,,holiday period from,hto,,HDA:3,,,holiday period to,hfrom_1,,HDA:3,,,holiday period from,hto_1,,HDA:3,,,holiday period to
+#w,,,HolidayPeriod,HolidayPeriod,,,b509,0e4300,hfrom,,HDA:3,,,holiday period from,hto,,HDA:3,,,holiday period to,hfrom_1,,HDA:3,,,holiday period from,hto_1,,HDA:3,,,holiday period to
+r,,,RoomTempHoliday,RoomSetTempHoliday,,,b509,0d2200,value,,D2C,,°C,temperature
+w,,,RoomTempHoliday,RoomSetTempHoliday,,,b509,0e2200,value,,D2C,,°C,temperature
+#r,,,LcdContrastPwmValue,LcdContrastPwmValue: contrast for the display,,,b509,0d3600,value,,UCH,,,
+#w,,install,LcdContrastPwmValue,LcdContrastPwmValue: contrast for the display,,,b509,0e3600,value,,UCH,,,
+
+r2,hc,,BoilerTemp,Boiler temperature,,,5022,000d00,value,,UIN,10,°C,temperature 
+r2,hc,,AcumulatorTemp,Acumulator temperature,,,5022,000e00,value,,UIN,10,°C,temperature
+
+
+#2025-12-25 10:04:10.595 [update notice] store 35 ident: done
+#2025-12-25 10:04:10.595 [update notice] sent scan-read scan.35  QQ=31: Wolf; 8;0110;0000
+#2025-12-25 10:04:10.595 [bus notice] scan 35: ;Wolf; 8;0110;0000
+#2025-12-25 10:04:10.690 [update notice] received unknown MM cmd: 3003050709bb0010040080ff6e00
+#2025-12-25 10:04:10.784 [main error] unable to load scan config 35: no file from wolf with prefix 35 found
+#2025-12-25 10:04:10.784 [main error] scan config 35: ERR: element not found
