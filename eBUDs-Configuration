@@ -1,0 +1,12 @@
+scanconfig: true
+loglevel_all: notice
+mqtttopic: ebusd
+mqttint: /etc/ebusd/mqtt-hassio.cfg
+mqttjson: true
+network_device: ens:192.168.xxx.xx:9999
+latency: 10
+configpath: /config/ebus/ebusd-conf_wolf-cgu-2k-18_wolf-rm-2
+accesslevel: "*"
+http: false
+readonly: false
+commandline_options: "--mqttvar=filter-direction=r|u|^w"
