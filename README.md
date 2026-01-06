@@ -2,7 +2,7 @@
 ebusd csv files for wolf cgu-2k-18 and wolf rm-2
 
 # Currently this is work in progress
-as I am exploring the csv format and the commands on my bus.
+... as I am exploring the csv format and the commands on my bus.
 
 # My System identifies as:
 ```
@@ -21,6 +21,14 @@ I habe several command types:
 - BC = Burner Circruit
 - MS = ?
 - MM = ?
+
+# my ebusd setup:
+- easi firmware Build: 20260104
+- eBUS Adapter Stick C6
+- connected via WiFi (ethernet is planned)
+- ebusd installed as Home Assistant Addon https://github.com/LukasGrebe/ha-addons
+- connection ebusd <> ha via mqtt
+- i did follow this guide: https://github.com/john30/ebusd/discussions/1177
 
 # Please be careful
 I am no expert and these files are not validated in any kind of way.
