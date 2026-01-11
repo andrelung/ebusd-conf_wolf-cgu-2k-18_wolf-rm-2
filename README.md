@@ -53,3 +53,39 @@ Any help and explanations are appreciated :)
 - and why do the numbers differ (08 + 35 are my adresses, i guess)
 - is maybe one of these masters the ebus adapter stick itself?
     - probably not, since: [bus notice] bus started with own address 31/36
+
+
+# What I needed to learn, to create these files:
+understand the csv-definition, read the best practice from https://github.com/john30/ebusd/wiki/HowTos#:~:text=The-,message%20definition,-including%20all%20three
+type,circuit,name,comment,QQ,ZZ,PBSB,ID,field1,part,type,divider/values,unit,comment,field2,part,type,divider/values,unit,comment
+*rm,mixer,,,,50,B504,,,,,,,,,,,,,
+*rw,water,,,,25,B504,,,,,,,,,,,,,
+*rc,circul,,,,23,B504,,,,,,,,,,,,,
+rm;rw;rc,mixer,temp_mode,,,,,01,temp,,UCH,,°C,desired temp.,mode,,UCH,1=on;2=off;3=auto;4=eco;5=low,,operating mode
+
+## Furthermore:
+QQZZPBSBNNDD / NNDD = count
+- QQ is the source address
+- ZZ is the destination address
+- PBSB is the primary and secondary command byte
+- NN is the number of data bytes 
+- DD following count is the number of times the message was seen on the bus
+
+
+# Some notes for myself and my testing:
+######################
+#type,circuit,name,comment,QQ,ZZ,PBSB,ID,field1,part,type,divider/values,unit,comment
+#,comment,field2,part,type,divider/values,unit,comment
+#r  ,    rm2,    ,       ,  ,50,B504,  ,      ,    ,    ,              ,    ,       ,      ,    ,    ,              ,    ,
+
+#type,circuit,name                          ,                   comment,qq,zz,pbsb,id    ,*name                     ,part,type,divisor/values,unit,comment
+#r   ,bm2    ,    sockeltemperatur_heizkurve,Sockeltemperatur Heizkurve,  ,35,5022,CC7B27,sockeltemperatur_heizkurve,    ,SIN ,            10,    ,
+
+
+# QQ is the source address
+# ZZ is the destination address
+###########,comment                                       ,QQ,ZZ,PBSB,ID,    ,fie1,part,TYP,DI,UNIT,COMMENT
+#r,rm2,time,Time from RM2                                 ,  ,35,5022,CCB127 ,time,    ,   ,  ,    ,
+
+# SIN is the datatype "signed integer", HEX seems to be raw data
+# hex will not show up in Home Assistant

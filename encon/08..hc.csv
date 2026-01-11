@@ -1,80 +1,87 @@
-type,circuit,level,name,comment,qq,zz,pbsb,id,*name,part,type,divisor/values,unit,comment
+# unused, old definitions:
+#type,circuit,level,name,comment,qq,zz,pbsb,id,*name,part,type,divisor/values,unit,comment
 
-# offen - ggf irrelevant für mein System:
-*w,
-*r,
-#w,,,Operation,Betriebsdaten des Reglers an den Feuerungsautomaten,,03,0507,,status,,UCH,0=off;1=none;85=hwc;170=heat;204=emissioncheck;221=techcheck;238=stop;102=hwc_stop;187=hwc_heat;68=hwc_stepped,,status heat request,action,,UCH,0=none;1=pumpoff;2=pumpon;3=consumeoff;4=consumeon,,variable consumers,desiredtemp,,D2C,,°C,boiler target temperature,desiredpress,,D2B,,bar,boiler target pressure,settingdegree,,D1C,,%,"setting degree, steps instead of percent when action is 0x44=hwc_stepped",hwcdesiredtemp,,D1C,,°C,hot water target temperature,fuel,,UCH,0=dontcare;1=gas;2=oil;3=dontcare1,,fuel choice
-#w,,,RcTarget,Sollwertübertragung des Reglers an andere Regler,,03,0800,,desiredtemp,,D2B,,°C,boiler target temperature,outsidetemp,,D2B,,°C,outside temperature,forced,,SCH,,%,forced performance,hwc,,BI0,,,hot water active,hc,,BI1,,,heat active,hwcdesiredtemp,,D2B,,°C,hot water target temperature
-r,,,Hg01,HG 01 - Hysterese Vorlauftemperatur (5-30),,,5022,002200,value,,UIN,10,°C,temperature
-w,,,Hg01,HG 01 - Hysterese Vorlauftemperatur (5-30),,03,5023,002200,value,,UIN,10,°C,temperature
-r,,,Hg02,HG 02 - Untere Geblaesedrehzahl (25-100),,,5022,005a01,value,,UIN,,%,percent
-r,,,Hg03,HG 03 - Obere Geblaesedrehzahl Warmwasser,,,5022,005901,value,,UIN,,%,percent
-r,,,Hg04,HG 04 - Obere Geblaesedrehzahl Heizung (1-100),,,5022,003f01,value,,UIN,,%,percent
-r,,,Hg06,HG 06 - Heizkreispumpenbetriebsart (0-2),,,5022,004101,value,,UIN,,,
-w,,,Hg06,HG 06 - Heizkreispumpenbetriebsart (0-2),,03,5023,004101,value,,UIN,,,
-r,,,Hg07,HG 07 - Heizkreispumpennachlauf (0-30),,,5022,004201,value,,UIN,,minutes,minutes
-w,,,Hg07,HG 07 - Heizkreispumpennachlauf (0-30),,03,5023,004201,value,,UIN,,minutes,minutes
-r,,,Hg08,HG 08 - Maximale Vorlaufsolltemperatur (40-90),,,5022,008402,value,,UIN,10,°C,temperature
-w,,,Hg08,HG 08 - Maximale Vorlaufsolltemperatur (40-90),,03,5023,008402,value,,UIN,10,°C,temperature
-r,,,Hg09,HG 09 - Taktsperre (1-30),,,5022,004301,value,,UIN,,minutes,minutes
-w,,,Hg09,HG 09 - Taktsperre (1-30),,03,5023,004301,value,,UIN,,minutes,minutes
-r,,,Hg10,HG 10 - eBus-Adresse,,,5022,007801,value,,UIN,,,
-r,,,Hg11,HG 11 - Warmwasserschnellstart,,,5022,006a01,value,,UIN,10,°C,temperature
-r,,,Hg12,HG 12 - Gasart,,,5022,006b01,value,,UIN,,,
-r,,,Hg15,HG 15 - Speicherhysterese (1-30),,,5022,004001,value,,UIN,10,°C,temperature
-w,,,Hg15,HG 15 - Speicherhysterese (1-30),,03,5023,004001,value,,UIN,10,°C,temperature
-r,,,Hg16,HG 16 - Pumpenleistung HK minimal (20-100),,,5022,005501,value,,UIN,,minutes,minutes
-w,,,Hg16,HG 16 - Pumpenleistung HK minimal (20-100),,03,5023,005501,value,,UIN,,minutes,minutes
-r,,,Hg17,HG 17 - Pumpenleistung HK maximal (20-100),,,5022,005601,value,,UIN,,minutes,minutes
-w,,,Hg17,HG 17 - Pumpenleistung HK maximal (20-100),,03,5023,005601,value,,UIN,,minutes,minutes
-r,,,Hg21,HG 21 - Kesselminimaltemperatur,,,5022,001f00,value,,UIN,10,°C,temperature
-w,,,Hg21,HG 21 - Kesselminimaltemperatur,,03,5023,001f00,value,,UIN,10,°C,temperature
-r,,,Hg22,HG 22 - Kesselmaximaltemperatur,,,5022,002700,value,,UIN,10,°C,temperature
-w,,,Hg22,HG 22 - Kesselmaximaltemperatur,,03,5023,002700,value,,UIN,10,°C,temperature
-r,,,Hg73,HG 73 - Io-Istwert,,,5022,007001,value,,UIN,,minutes,minutes
-r,,,Hg74,HG 74 - Geblaesedrehzahl,,,5022,00f601,value,,UIN,,U/sec,
-r,,,Hg75,HG 75 - Warmwasserdurchsatz,,,5022,006c01,value,,UIN,,minutes,minutes
-r,,,Hg9x,HG 9x - Netzbetriebsstunden,,,5022,002802,value,,UIN,,hours,hours
-r,,,Hg90,HG 90 - Brennerbetriebsstunden,,,5022,002a02,value,,UIN,,hours,hours
-r,,,Hg91,HG 91 - Brennerstarts,,,5022,002602,value,,UIN,,,
-r,,,Pump,PWM Pumpe,,,5022,006d01,value,,UIN,,%,percent
+# working: (RM-2 Ausgabewerte A01-A03)
+#r,hc,,Flowtempdesired,Vorlauf Sollwert,,,5022,000200,value,,UIN,10,°C,temperature
+#r,hc,,Flowtemp,Vorlauf Istwert,,,5022,000d00,value,,UIN,10,°C,temperature
+#r,hc,,Hwctempdesired,Warmwasser Solltemperatur,,,5022,000300,value,,UIN,10,°C,temperature
 
-
-# working: (BM-2 Ausgabewerte A01-A03) https://ai.withgrips.com/c/578b57a2-21d8-4881-9f27-7e47485f1b99
-r,,,Flowtempdesired,Vorlauf Sollwert,,,5022,000200,value,,UIN,10,°C,temperature
-r,,,Flowtemp,Vorlauf Istwert,,,5022,000d00,value,,UIN,10,°C,temperature
-r,,,Hwctempdesired,Warmwasser Solltemperatur,,,5022,000300,value,,UIN,10,°C,temperature
-
-r,,,tagzieltemp,Tag Zieltemperatur (35->50),,35,5022,fb7d27,,,UIN,10,°C,temperature
+#r,hc,,tagzieltemp,Tag Zieltemperatur (35->50),,35,5022,fb7d27,,,UIN,10,°C,temperature
 # => 23
 
-# Testing:
-r3,,,temp_burner,Kesseltemperatur (30->08),,08,5022,CC0D00,,,UIN,10,°C,temperature
-# => 35
+#r,hc,,raumtemp,Raumtemperatur,,35,5022,77b427,value,,UIN,10,°C,temperature
 
-r,,,kesselsolltemperatur,Kesselsolltemperatur,,08,5022,CC0200,,,SIN,10,°C,temperature
-# => 40
+# prinzipiell ok:
+#r2,hc,,BoilerTemp,Boiler temperature,,,5022,000d00,value,,UIN,10,°C,temperature 
+#r2,hc,,AcumulatorTemp,Acumulator temperature,,,5022,000e00,value,,UIN,10,°C,temperature
 
-# breaks other roomtemp in bm2.csv => seems broken in bm2, enable this here
-r,,,raumtemp,Raumtemperatur,,35,5022,77b427,value,,UIN,10,°C,temperature
+# definitions based on https://github.com/user-attachments/files/21865875/wolf.json
+# "DTID": "110000"
+# "name": "CGU-2",
+# relevant part:
 
-# might break other wwsoll http://192.168.174.20:8123/history?entity_id=sensor.ebusd_hc_hwctempdesired&start_date=2026-01-02T23%3A00%3A00.000Z
-#w,,,wwsoll,Warmwasser Solltemperatur,,35,5023,001300,value,,UIN,10,°C,temperature
-
-
-# falsche Werte:
-# 255:
-#r,,,Hwctemp,Warmwasser Ist-Temperatur,,,5022,000e00,value,,UIN,10,°C,temperature
-# 3,276.8:
-#r,,,Returntemp,Ruecklauf Ist-Temperatur,,,5022,001600,value,,UIN,10,°C,temperature
-#
-#r,cha,verdichterstarts,Verdichterstarts,,08,5022,CC2602;CC2702,verdichterstarts,,ULG,,,Verdichterstarts 
-#=> 128.357
-# r,cha,verdichter_max_starts_pro_stunde,(WP121) Verdichter max. Starts pro Stunde,,08,5022,CC582F,verdichter_max_starts_pro_stunde,,UIN,,,(WP121) Verdichter max. Starts pro Stunde
-# => 32.768
-# r,cha,warmwassertemperatur,Warmwassertemperatur,,08,5022,CC0E00,warmwassertemperatur,,SIN,10,°C,Warmwassertemperatur
-# => 255
-# r,cha,aussentemperatur,Außentemperatur,,08,5022,CC0C00,aussentemperatur,,SIN,10,°C,Außentemperatur
-# => -40
-# r,,no_of_power_on,Anzahl Netz-Ein (30->08),,08,5022,CC5E27,,,UIN,,,,,,,,,,,,
-# => 32.768
+# CC9A01 - PRELOAD_Firmware
+r,hc,preload_firmware,PRELOAD_Firmware,,35,5022,CC9A01,value,,HEX,,,
+# CC7901 - System configuration - Anlagenkonfiguration
+r,hc,system_configuration,system_configuration,,35,5022,CC7901,value,,HEX,,,
+r,hc,outside_temperature,Außentemperatur,,35,5022,CC0C00,value,,UIN,10,°C,temperature
+r,hc,flow_temperature_1,Vorlauf Istwert1,,35,5022,CC8E03,value,,UIN,10,°C,temperature
+r,hc,flow_temperature_2,Vorlauf Istwert2,,35,5022,CC0D00,value,,UIN,10,°C,temperature
+r,hc,flow_temperature_desired,Vorlauf Sollwert,,35,5022,CC0200,value,,UIN,10,°C,temperature ###
+r,hc,cylinder_temperature_current,Speichertemperatur Ist,,35,5022,CC0E00,value,,UIN,10,°C
+r,hc,cylinder_temperature_target,Speichertemperatur Soll,,35,5022,CC0300,value,,UIN,10,°C
+r,hc,outlet_temperature,Auslauftemperatur,,35,5022,CC8F03,value,,UIN,10,°C
+#r,hc,flow_sensor,Durchfluss-Sensor,,35,5022,CC6C01,value,,HEX,, # duplicate with hot_water_throughput
+# CC7201 - flame - 
+r,hc,flame,flame,,35,5022,CC7201,mode,,UCH,0=On;1=Off,,
+# CC7301 - Boiler pump
+r,hc,boiler_pump,Boiler pump,,35,5022,CC7301,value,,HEX,,
+# CC7301 - 3-way diverter valve
+# CC7601 - Boiler status
+r,hc,boiler_status,Boiler status,,35,5022,CC7601,mode,,UCH,0=Standby;1=Schornsteinfeger;2=Softstart;3=Wärmeanforderung;4=HG Status 4;5=Wärmeanforderung mit Taktsperre;6=Taktsperre;7=Frostschutz-Heizung;8=Anfahrentlastung;9=HG Status 9;10=HG Status 10;11=Warmwasserzapfung;12=Warmwasserzapfung Nachlauf;13=Mindestkombizeit;14=Warmwasserschnellstart-Nachladung;15=Speicherbetrieb;16=Speicher-Frostschutz;17=Speicher-Pumpennachlauf;18=Trockenlauf;19=dT-Leistungsabsenkung;20=Speicherparallelbetrieb;21=max. Speicherladezeit überschritten;22=Fühlerbetriebsart 2, geschlossener Kontakt;23=Fühlerbetriebsart 3, geschlossener Kontakt;24=Sperrzeit Abgastempwächter,,
+# CC6F01 - Current burner output 
+r,hc,current_burner_output ,Current burner output ,,35,5022,CC6F01,value,,HEX,,
+# CC6D01 - PWM Gerätepumpe
+# CC7201 - Sicherheitstemperaturbegrenzer
+# CC7301 - Anforderung
+# CC7201 - Eingang 1 digital # duplicate
+# CC7301 - Ausgang 1 digital # duplicate 
+# CC7301 - Ventil 1 # duplicate 
+# CC7301 - Ventil 2 # duplicate 
+# CC9003 Modulationsstrom
+# CC7301 - Abgasklappe # duplicate
+# CC7201 - Abgasströmungswächter # duplicate
+# CC7201 Netzbetriebstunden # duplicate
+# CC3400 - Tube trimming - Rohrlängenanpassung
+# CC2200 - Burner switching differential
+# CC5A01 Untere Brennerleistung HZ
+r,hc,burner_output_heating_limit_lower,burner_output_limit_lower,,35,5022,CC5A01,value,,HEX,,
+# CC3F01 Obere Brennerleistung HZ
+r,hc,burner_output_heating_limit_upper,burner_output_heating_limit_upper,,35,5022,CC3F01,value,,HEX,,
+# CC5901 Obere Brennerleistung WW
+r,hc,burner_output_hotwater_limit_upper,burner_output_hotwater_limit_upper,,35,5022,CC5901,value,,HEX,,
+# CC4101 - Pumpenbetriebsart
+# CC4201 - Nachlaufzeit Kesselkreispumpen
+# CC8402 Maximalbegrenzung Kesselkreis TV-max
+# CC4301 Brennertaktsperre
+# CC7801 eBus-Adresse
+# CC6A01 Warmwasserschnellstart
+# CC6B01 Gas type
+# CC5B0A Parametrierbarer Eingang E1
+# CCBF0A Parametrierbarer Ausgang A1
+# CC4001 Speicherhysterese
+r,hc,cylinder_hysteresis,cylinder_hysteresis,,35,5022,CC4001,value,,UIN,10,°C,temperature
+# CC5501 Pumpenleistung HK minimal
+# CC5601 Pumpenleistung HK maximal
+# CC8001 max Speicherladezeit
+# CC1F00 Kesselminimaltemperatur TK-min
+# CC2700 Kesselminimaltemperatur TK-max
+# CC8101 Warmwassermaximaltemperatur
+r,hc,hot_water_maximum_temperatur,hot_water_maximum_temperatur,,35,5022,CC8101,value,,UIN,10,°C,temperature
+# CC2D00 Kesselübertemperatur bei Speicherladung
+# CC3600 Analogeingang E1
+# CC7001 Io-Istwert
+# CC6C01 Warmwasserdurchsatz
+r,hc,hot_water_throughput,hot_water_throughput,,35,5022,CC6C01,value,,UIN,10,°C,temperature
+# CC2A02 Brennerbetriebsstunden
+# CC2A02 Brennerstarts

@@ -1,0 +1,81 @@
+# working:
+r,rm2,sockeltemperatur_heizkurve,Vorlauftemperatur unterer Sockel,,35,5022,CC7B27,sockeltemperatur_heizkurve,,SIN,10,,
+w,rm2,sockeltemperatur_heizkurve,Vorlauftemperatur unterer Sockel,,35,5023,007B27,sockeltemperatur_heizkurve,,SIN,10,,
+r,rm2,vorlauftemperatur_heizkurve,Maximale Vorlauftemperatur,,35,5022,CC7C27,vorlauftemperatur_heizkurve,,SIN,10,,
+w,rm2,vorlauftemperatur_heizkurve,Maximale Vorlauftemperatur,,35,5023,007C27,vorlauftemperatur_heizkurve,,SIN,10,,
+
+# moved from 08..csv - will it still work? 
+# yes, but only after an adapter reboot (? don't know why !)
+r,rm2,room_temperature_current,Temperatur am Bedienfeld,,35,5022,77b427,value,,UIN,10,°C,temperature
+
+# Backup
+# this value is not known to wolf.json
+r,rm2,flow_temperature_current,Vorlauf Istwert,,35,5022,000d00,value,,UIN,10,°C,temperature
+
+# testing
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UCH,0=off;1=on,,
+#w,rm2,party_mode,Party mode,,35,5023,008527,mode,,UCH,0=off;1=on,,
+#r,rm2,party_mode_remaining,Party mode remaining time,,35,5022,CC8527,party_mode_remaining,,TIMESPAN_DD_HH_MM,,
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UC,0=off;!=0=on,, # ERR: invalid value list, value !=0=on in field 0
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UC,0=off;1=on,, # [main error] error reading common config file encon/rm-2.csv: ERR: element not found, encon/rm-2.csv:22: ERR: element not found, field type UC in field 0
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UC,,,
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,u8,0=off,,
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UC,0=off;1=on,,
+#r,rm2,party_mode,Party mode,,35,5022,CC8527,mode,,UB,0=off;1=on,,
+#r,rm2,party_mode_raw0,Party mode raw byte 0,,35,5022,CC8527,value,,UIN,1,,
+r,rm2,party_mode_remaining,Party mode remaining time,,35,5022,CC8527,raw,,HEX,,
+
+# definitions based on https://github.com/user-attachments/files/21865875/wolf.json
+## "DTID": "400000",
+## "name": "RM-2",
+
+r,rm2,hotwater_temperature_desired,Warmwasser Solltemperatur eingestellt,,35,5022,CC1300,value,,UIN,10,°C
+r,rm2,room_sensor_matching,Anpassung Raumfuehler,,35,5022,CC0901,value,,UIN,10,°C
+r,rm2,target_temperature_eco,Spar Zieltemperatur,,35,5022,CC0800,value,,UIN,10,°C,temperature
+r,rm2,target_temperature_day,Tag Zieltemperatur,,35,5022,CC7D27,value,,UIN,10,°C,temperature
+
+## 
+r,rm2,outside_temperature,Außentemperatur,,35,5022,CCD327,value,,UIN,10,°C
+
+# 1x Warmwasser - CC8527
+# CCC927 PRELOAD_Firmware
+# CCB127 RM2 Time
+r,rm2,time,Time from RM2,,35,5022,CCB127,time,,HEX,,,
+# Urlaubsmodus - CC8527
+#r,rm2,mode_vacation,Vacation Mode,,35,5022,CC8527,value,,HEX,,, # duplicate with party mode # see line 93045
+# Wochentag CC8215
+r,rm2,day_of_week,Wochentag,,35,5022,CC8215,value,,HEX,,,
+# Typ des Zeitprogramms CC8115
+r,rm2,type_of_time_program,Type of time program,,35,5022,CC8115,value,,HEX,,,
+# Antilegionellenfunktion CC0101
+r,rm2,pasteurisation_function,Antilegionellenfunktion,,35,5022,CC0101,value,,HEX,,,
+# PI-Regler Raumtemperatur Kp CC2900
+r,rm2,room_temperature_pi_controller_kp,Raumtemperatur PI-Regler Kp,,35,5022,CC2900,value,,UIN,10,°C,temperature
+# PI-Regler Raumtemperatur Tn CC2A00
+r,rm2,room_temperature_pi_controller_tn,Raumtemperatur PI-Regler Tn,,35,5022,CC2A00,value,,UIN,10,°C,temperature
+# Batterieladezustand - CC9015
+r,rm2,battery_charge_level,Battery,,35,5022,CC9015,value,,HEX,,,
+#,mode,,UCH,1=empty;2=almost empty;3=half full;4=full,,
+# Qualität Funkverbindung - CC9115
+r,rm2,wireless_connection_quality,wireless_connection_quality,,35,5022,CC9115,value,,HEX,,,
+#,mode,,UCH,1=no connection;2=Weak;3=Sufficient;4=Very good,,
+# Firmware - CCC927
+r,rm2,firmware,Firmware,,35,5022,CCC927,value,,HEX,,,
+# Lüftungsstufe eingestellt - CC8015
+r,rm2,ventilation_level_set,ventilation_level_set,,35,5022,CC8015,value,,HEX,,,
+#,mode,,UCH,0=Stufe 0;2=Weak;3=Stufe 3,,
+# Programmwahl Lüftung CC8F27
+r,rm2,ventilation_program,ventilation_program,,35,5022,CC8F27,value,,HEX,,,
+#,mode,,UCH,0=Auto;1=Manual,,
+# Zeitprogramm Lüftung - CC8115
+#r,rm2,ventilation_time_program,ventilation_time_program,,35,5022,CC8115,value,,HEX,,, # duplicate with type_of_time_program
+#,mode,,UCH,0=Day program;1=Week program (app),,
+
+# Status Filter - CCC827
+r,rm2,ventilation_status_filter,ventilation_status_filter,,35,5022,CCC827,value,,HEX,,,
+#,mode,,UCH,0=Ok;1=Change filter,,
+
+#r,rm2,pi_kp,PI-Regler Raumtemperatur Kp,,35,5022,CC2900,,,,,
+#r,rm2,pi_tn,PI-Regler Raumtemperatur Tn,,35,5022,CC2A00,,,,,
+#r,rm2,day_of_week,Wochentag,,35,5022,CC8215,,,,,
+
